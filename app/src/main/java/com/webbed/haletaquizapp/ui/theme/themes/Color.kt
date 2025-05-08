@@ -1,4 +1,4 @@
-package com.webbed.haletaquizapp.ui.theme
+package com.webbed.haletaquizapp.ui.theme.themes
 
 import androidx.compose.ui.graphics.Color
 
