@@ -1,4 +1,4 @@
-package com.example.geez.ui.theme.screens.quiz
+package com.webbed.haletaquizapp.ui.theme.screens.quiz
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,8 +11,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.*
-import com.example.geez.R
 import com.example.geez.ui.theme.screens.quiz.QuizViewModel
+import com.webbed.haletaquizapp.R
+//import com.webbed.haletaquizapp.ui.theme.screens.quiz.QuizViewModel
 
 @Composable
 fun QuizScreen(
@@ -26,7 +27,7 @@ fun QuizScreen(
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(id = R.drawable.background),
+            painter = painterResource(id = R.drawable.bg_img),
             contentDescription = "Background",
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
