@@ -17,11 +17,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import com.webbed.haletaquizapp.R
 
 @Composable
-fun PronounsScreen(navController: NavController) {
+fun PronounsScreen() {
     val viewModel: PronounsViewModel = viewModel()
     val pronouns = viewModel.pronouns.collectAsState().value
 
@@ -91,9 +90,9 @@ fun PronounsScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Back button that navigates
+            // Static back button (no nav logic)
             Button(
-                onClick = { navController.navigate("learning") },
+                onClick = { /* No action yet */ },
                 shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                 modifier = Modifier

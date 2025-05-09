@@ -13,7 +13,7 @@ import com.webbed.haletaquizapp.R
 fun BackgroundWrapper(content: @Composable () -> Unit) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(id = R.drawable.bgimg),
+            painter = painterResource(id = R.drawable.bg_img),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()

@@ -38,11 +38,11 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
                 .fillMaxSize()
                 .padding(top = 16.dp)
         ) {
-            // Menu Icon
+            // Menu Icon (moved right by 5.dp)
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 8.dp),
+                    .padding(start = 13.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(onClick = { viewModel.openDrawer() }) {
@@ -56,7 +56,7 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Logo
+            // Logo (moved up by 20.dp → reduce next spacer)
             Image(
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = "Logo",
@@ -65,30 +65,43 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
                     .width(220.dp)
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(-4.dp)) // original 16.dp - 20 = -4.dp to lift logo up
 
-            val buttonHeight = 44.dp
+            val buttonHeight = 39.dp
 
-            listOf(
-                "መስሎችን - Pronouns" to "Pronouns",
-                "ግሶ - Verbs" to "Verbs",
+            val mainButtons = listOf(
+                "መራሕያን - Pronouns" to "Pronouns",
+                "ግስ - Verbs" to "Verbs",
                 "ስም - Nouns" to "Nouns",
-                "ቅድመ - Adjectives" to "Adjectives",
-                "አካል - Numbers" to "Numbers"
-            ).forEach { (label, topic) ->
-                TopicButton(text = label, height = buttonHeight) {
+                "ቅጽል - Adjectives" to "Adjectives",
+                "አሃዝ - Numbers" to "Numbers"
+            )
+
+            mainButtons.forEach { (label, topic) ->
+                TopicButton(
+                    text = label,
+                    height = buttonHeight,
+                    cornerRadius = 12.dp
+                ) {
                     viewModel.onTopicClick(topic)
                 }
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(20.dp))
             }
 
-            // Smaller "Back" button
-            Spacer(modifier = Modifier.height(8.dp))
+            // "Back" button: 1/3 width, left aligned, 20.dp above
+            Spacer(modifier = Modifier.height(20.dp))
             Box(
                 modifier = Modifier
-                    .fillMaxWidth(0.5f)
+                    .fillMaxWidth()
+                    .padding(start = 32.dp)
+                    .widthIn(max = 120.dp) // ~1/3 of screen width
             ) {
-                TopicButton(text = "ተመላሽ", height = 36.dp) {
+                TopicButton(
+                    text = "ተመለስ",
+                    height = buttonHeight,
+                    widthFraction = 0.33f,
+                    cornerRadius = 8.dp
+                ) {
                     viewModel.onBack()
                 }
             }
@@ -108,7 +121,6 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
                     .fillMaxHeight()
                     .fillMaxWidth(0.65f)
             ) {
-                // Menu background only on 65%
                 Image(
                     painter = painterResource(id = R.drawable.menubg),
                     contentDescription = "Menu BG",
@@ -132,21 +144,19 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
                             tint = Color.White
                         )
                     }
-
-                    Spacer(modifier = Modifier.height(40.dp))
-
-                    listOf("Option 1", "Option 2", "Option 3", "Option 4").forEach { label ->
+                    Spacer(modifier = Modifier.height(160.dp))
+                    listOf("ጥያቄ - ፈተና ክብደት", " የፈተና ማህደር", " ንባብ", "መለያ").forEach { label ->
                         Button(
                             onClick = { /* TODO */ },
                             modifier = Modifier
-                                .fillMaxWidth(0.8f)
-                                .height(44.dp),
-                            shape = RoundedCornerShape(12.dp),
+                                .fillMaxWidth(0.85f)
+                                .height(39.dp),
+                            shape = RoundedCornerShape(10.dp),
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFCE8EE))
                         ) {
                             Text(text = label, fontSize = 15.sp, color = Color(0xFF771F1E))
                         }
-                        Spacer(modifier = Modifier.height(12.dp))
+                        Spacer(modifier = Modifier.height(25.dp)) // was 15, now +10
                     }
                 }
             }

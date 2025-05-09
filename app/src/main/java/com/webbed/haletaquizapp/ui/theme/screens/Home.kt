@@ -28,7 +28,7 @@ fun LandingScreen(
     ) {
         // Background Image
         Image(
-            painter = painterResource(id = R.drawable.bgimg),
+            painter = painterResource(id = R.drawable.bg_img),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
@@ -43,7 +43,7 @@ fun LandingScreen(
         ) {
             // Logo
             Image(
-                painter = painterResource(id = R.drawable.logoimg),
+                painter = painterResource(id = R.drawable.logo),
                 contentDescription = "App Logo",
                 modifier = Modifier.size(200.dp)
             )

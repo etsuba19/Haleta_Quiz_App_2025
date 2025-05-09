@@ -1,33 +1,23 @@
-package com.webbed.haletaquizapp.ui.theme.navigation
-
-import androidx.compose.runtime.Composable
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.webbed.haletaquizapp.ui.theme.screens.*
-import com.webbed.haletaquizapp.ui.theme.Screen
-
-@Composable
-fun Navigation() {
-    val navController = rememberNavController()
-
-//    NavHost(navController = navController, startDestination = Screen.Landing.route) {
-//        composable(Screen.Login.route) {
-//            LoginScreen(
-//                onForgotPasswordClick = {
-//                    navController.navigate(screen.Forgot.route)
-//                },
-//                onSignUpClick = {
-//                    navController.navigate(screen.Signup.route)
-//                },
-//                navController = navController
-//            )
-//        }
+//package com.webbed.haletaquizapp.ui.theme.navigation
 //
-//        composable(screen.Forgot.route) { ForgotPasswordScreen(navController) }
-//        composable(screen.Signup.route) { SignUpScreen(navController) }
-//        composable(screen.Landing.route) { LandingScreen(navController) }
-//        composable(screen.Choice.route) { ChoiceScreen(navController) }
-//        composable(screen.Security.route) { SecurityQuestionsScreen(navController) }
+//import androidx.compose.runtime.Composable
+//import androidx.lifecycle.viewmodel.compose.viewModel
+//import androidx.navigation.NavHostController
+//import androidx.navigation.compose.NavHost
+//import androidx.navigation.compose.composable
+//import com.webbed.haletaquizapp.ui.theme.screens.pronouns.PronounsScreen
+//import com.webbed.haletaquizapp.ui.theme.screens.learning.LearningTopicsScreen
+//import com.webbed.haletaquizapp.ui.theme.screens.learning.LearningTopicsViewModel
+//
+//@Composable
+//fun AppNavigation(navController: NavHostController) {
+//    NavHost(navController = navController, startDestination = "pronouns") {
+//        composable("pronouns") {
+//            PronounsScreen(navController = navController)
+//        }
+//        composable("learning") {
+//            val viewModel: LearningTopicsViewModel = viewModel()
+////            LearningTopicsScreen(viewModel = viewModel)
+//        }
 //    }
-}
+//}
