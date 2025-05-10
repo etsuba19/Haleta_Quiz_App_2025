@@ -1,4 +1,4 @@
-package com.example.geez.ui.theme.components
+package com.webbed.haletaquizapp.ui.theme.component
 
 import android.service.autofill.OnClickAction
 import androidx.compose.foundation.background
