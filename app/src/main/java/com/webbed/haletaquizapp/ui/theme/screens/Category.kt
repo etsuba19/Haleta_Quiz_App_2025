@@ -20,8 +20,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.webbed.haletaquizapp.R
 import com.webbed.haletaquizapp.ui.theme.component.OptionCard
 //import com.webbed.haletaquizapp.ui.theme.component.DrawerMenu
-import kotlinx.coroutines.launch
-import java.util.Locale.Category
 
 @Composable
 fun Category(
@@ -65,7 +63,7 @@ fun Category(
 
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                 Image(
-                    painter = painterResource(id = R.drawable.logo),
+                    painter = painterResource(id = R.drawable.logoimg),
                     contentDescription = "Logo",
                     modifier = Modifier.size(180.dp)
                 )

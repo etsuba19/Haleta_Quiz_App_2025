@@ -49,7 +49,7 @@ fun PronounsScreen() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.logo),
+                    painter = painterResource(id = R.drawable.logoimg),
                     contentDescription = "Logo",
                     modifier = Modifier
                         .size(60.dp)

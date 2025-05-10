@@ -110,7 +110,7 @@ fun ProfileScreen(onDrawerItemClick: (String) -> Unit) {
             }
 
             Image(
-                painter = painterResource(id = R.drawable.logo),
+                painter = painterResource(id = R.drawable.logoimg),
                 contentDescription = "Footer Logo",
                 modifier = Modifier
                     .size(170.dp)
