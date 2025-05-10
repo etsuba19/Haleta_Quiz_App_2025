@@ -23,7 +23,8 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
     val isDrawerOpen = viewModel.isDrawerOpen.collectAsState().value
 
     Box(modifier = Modifier.fillMaxSize()) {
-        // Background image
+
+        // 🔹 Background image
         Image(
             painter = painterResource(id = R.drawable.bg_img),
             contentDescription = null,
@@ -31,14 +32,14 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
             contentScale = ContentScale.Crop
         )
 
-        // Main content
+        // 🔹 Main Content
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(top = 16.dp)
         ) {
-            // Menu Icon (moved right by 5.dp)
+            // 🔹 Menu Icon Row
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -54,9 +55,9 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
                 }
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
-            // Logo (moved up by 20.dp → reduce next spacer)
+            // 🔹 Logo
             Image(
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = "Logo",
@@ -65,10 +66,10 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
                     .width(220.dp)
             )
 
-            Spacer(modifier = Modifier.height(-4.dp)) // original 16.dp - 20 = -4.dp to lift logo up
+            Spacer(modifier = Modifier.height(12.dp))
 
+            // 🔹 Topic Buttons
             val buttonHeight = 39.dp
-
             val mainButtons = listOf(
                 "መራሕያን - Pronouns" to "Pronouns",
                 "ግስ - Verbs" to "Verbs",
@@ -88,13 +89,12 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
                 Spacer(modifier = Modifier.height(20.dp))
             }
 
-            // "Back" button: 1/3 width, left aligned, 20.dp above
+            // 🔹 Back Button
             Spacer(modifier = Modifier.height(20.dp))
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 32.dp)
-                    .widthIn(max = 120.dp) // ~1/3 of screen width
             ) {
                 TopicButton(
                     text = "ተመለስ",
@@ -107,8 +107,9 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
             }
         }
 
-        // Overlay and Drawer
+        // 🔹 Overlay and Drawer
         if (isDrawerOpen) {
+            // Semi-transparent background
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -116,6 +117,7 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
                     .background(Color.Black.copy(alpha = 0.3f))
             )
 
+            // Drawer Content
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -144,8 +146,10 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
                             tint = Color.White
                         )
                     }
+
                     Spacer(modifier = Modifier.height(160.dp))
-                    listOf("ጥያቄ - ፈተና ክብደት", " የፈተና ማህደር", " ንባብ", "መለያ").forEach { label ->
+
+                    listOf("ጥያቄ - ፈተና ክብደት", "የፈተና ማህደር", "ንባብ", "መለያ").forEach { label ->
                         Button(
                             onClick = { /* TODO */ },
                             modifier = Modifier
@@ -156,7 +160,7 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
                         ) {
                             Text(text = label, fontSize = 15.sp, color = Color(0xFF771F1E))
                         }
-                        Spacer(modifier = Modifier.height(25.dp)) // was 15, now +10
+                        Spacer(modifier = Modifier.height(25.dp))
                     }
                 }
             }
