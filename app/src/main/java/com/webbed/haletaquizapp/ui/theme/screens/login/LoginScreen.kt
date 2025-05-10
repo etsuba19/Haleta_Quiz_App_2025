@@ -20,13 +20,15 @@ import androidx.navigation.NavController
 import com.webbed.haletaquizapp.R
 import com.webbed.haletaquizapp.ui.theme.Screen
 import com.webbed.haletaquizapp.ui.theme.component.CommonButton
+import androidx.lifecycle.viewmodel.compose.viewModel
+
 
 @Composable
 fun LoginScreen(
     onForgotPasswordClick: () -> Unit,
     onSignUpClick: () -> Unit,
     navController: NavController,
-    viewModel: LoginViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    viewModel: LoginViewModel = viewModel()
 ) {
     val username = viewModel.username
     val password = viewModel.password
