@@ -1,4 +1,7 @@
 pluginManagement {
+    plugins {
+        id("io.realm.kotlin") version "1.11.0"
+    }
     repositories {
         google {
             content {
