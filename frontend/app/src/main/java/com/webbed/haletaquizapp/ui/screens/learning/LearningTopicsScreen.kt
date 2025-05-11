@@ -26,7 +26,7 @@ fun LearningTopicsScreen(viewModel: LearningTopicsViewModel) {
 
         // 🔹 Background image
         Image(
-            painter = painterResource(id = R.drawable.),
+            painter = painterResource(id = R.drawable.bg_img),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
