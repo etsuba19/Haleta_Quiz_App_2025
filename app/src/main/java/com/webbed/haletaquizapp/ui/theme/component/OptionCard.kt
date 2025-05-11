@@ -34,14 +34,16 @@ fun OptionCard(
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = title,
+                fontSize = 25.sp,
                 style = MaterialTheme.typography.titleMedium,
-                color = Color.Black
+                color = Color(0xFF7C1626)
             )
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(15.dp))
             Text(
                 text = subtitle,
+                fontSize = 14.sp,
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.Gray
+                color = Color(0xFF7C1626)
             )
         }
     }
