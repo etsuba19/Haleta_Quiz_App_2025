@@ -23,5 +23,8 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Haleta Quiz App"
+
 include(":app")
+project(":app").projectDir = file("app")
+
  

@@ -1,4 +1,4 @@
-package com.webbed.haletaquizapp.ui.theme.component
+package com.webbed.haletaquizapp.component
 
 import android.service.autofill.OnClickAction
 import androidx.compose.foundation.background
