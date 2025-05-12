@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.webbed.haletaquizapp.R
 import androidx.navigation.NavController
+import com.webbed.haletaquizapp.component.CommonButton
+import com.webbed.haletaquizapp.navigation.Screen
 
 @Composable
 fun LandingScreen(
@@ -64,12 +66,12 @@ fun LandingScreen(
 
 
 
-//            CommonButton(
-//                text = "አስጀምር",
-//                onClick = {
-//                    navController.navigate(screen.Login.route)
-//                },
-//            )
+            CommonButton(
+                text = "አስጀምር",
+                onClick = {
+                    navController.navigate(Screen.Login.route)
+                },
+            )
         }
     }
 }

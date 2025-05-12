@@ -1,6 +1,8 @@
 pluginManagement {
     plugins {
-        id("io.realm.kotlin") version "1.11.0"
+        id("com.android.application")
+        id("org.jetbrains.kotlin.android") version "1.9.23"
+//        id("io.realm.kotlin") version "1.12.0" apply false
     }
     repositories {
         google {

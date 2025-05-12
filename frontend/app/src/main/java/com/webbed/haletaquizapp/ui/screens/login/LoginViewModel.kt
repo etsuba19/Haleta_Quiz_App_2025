@@ -4,9 +4,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.webbed.haletaquizapp.data.RealmProvider.realm
-import com.webbed.haletaquizapp.models.Admin
-import io.realm.kotlin.ext.query
+//import com.webbed.haletaquizapp.data.RealmProvider.realm
+//import com.webbed.haletaquizapp.models.Admin
+//import io.realm.kotlin.ext.query
 
 class LoginViewModel : ViewModel() {
     var username by mutableStateOf("")
@@ -46,15 +46,15 @@ class LoginViewModel : ViewModel() {
             errorMessage = null
             navigateToStudent()
         } else if (role == "admin") {
-            val admin = realm.query<Admin>("username == $0", username).first().find()
-            if (admin != null && admin.password == password) {
-                val canManageUsers = admin.canManageUsers
-                val canManageQuizzes = admin.canManageQuizzes
-                val canManageResources = admin.canManageResources
-                navigateToAdmin()
-            } else {
-                errorMessage = "መለያ ወይም የይለፍ ቃል ተሳስቷል"
-            }
+//            val admin = realm.query<Admin>("username == $0", username).first().find()
+//            if (admin != null && admin.password == password) {
+//                val canManageUsers = admin.canManageUsers
+//                val canManageQuizzes = admin.canManageQuizzes
+//                val canManageResources = admin.canManageResources
+//                navigateToAdmin()
+//            } else {
+//                errorMessage = "መለያ ወይም የይለፍ ቃል ተሳስቷል"
+//            }
         }
     }
 }

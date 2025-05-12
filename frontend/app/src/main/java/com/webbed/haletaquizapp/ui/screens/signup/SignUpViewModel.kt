@@ -2,8 +2,8 @@ package com.webbed.haletaquizapp.ui.screens.signup
 
 import androidx.lifecycle.ViewModel
 import com.webbed.haletaquizapp.data.RealmProvider
-import com.webbed.haletaquizapp.models.User
-import io.realm.kotlin.ext.query
+//import com.webbed.haletaquizapp.models.User
+//import io.realm.kotlin.ext.query
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,26 +31,26 @@ class SignUpViewModel : ViewModel() {
 
     fun saveUserData() {
         CoroutineScope(Dispatchers.IO).launch {
-            RealmProvider.realm.write {
-                copyToRealm(User().apply {
-                    username = _username.value
-                    password = _password.value
-                    resetA1 = _resetA1.value
-                    resetA2 = _resetA2.value
-                })
-            }
+//            RealmProvider.realm.write {
+//                copyToRealm(User().apply {
+//                    username = _username.value
+//                    password = _password.value
+//                    resetA1 = _resetA1.value
+//                    resetA2 = _resetA2.value
+//                })
+//            }
         }
     }
 
     fun loadUserData(usernameInput: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            val user = RealmProvider.realm.query<User>("username == $0", usernameInput).first().find()
-            user?.let {
-                _username.value = it.username
-                _password.value = it.password
-                _resetA1.value = it.resetA1
-                _resetA2.value = it.resetA2
-            }
+//            val user = RealmProvider.realm.query<User>("username == $0", usernameInput).first().find()
+//            user?.let {
+//                _username.value = it.username
+//                _password.value = it.password
+//                _resetA1.value = it.resetA1
+//                _resetA2.value = it.resetA2
+//            }
         }
     }
 

@@ -1,10 +1,10 @@
 package com.webbed.haletaquizapp.ui.screens.forgotpassword
 
 import androidx.lifecycle.ViewModel
-import com.webbed.haletaquizapp.models.User
-import io.realm.kotlin.Realm
-import io.realm.kotlin.RealmConfiguration
-import io.realm.kotlin.ext.query
+//import com.webbed.haletaquizapp.models.User
+//import io.realm.kotlin.Realm
+//import io.realm.kotlin.RealmConfiguration
+//import io.realm.kotlin.ext.query
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,14 +22,14 @@ class ForgotPasswordViewModel : ViewModel() {
     var answer2 = MutableStateFlow("")
         private set
 
-    private val realm: Realm
-
-    init {
-        val config = RealmConfiguration.Builder(schema = setOf(User::class))
-            .name("users.realm")
-            .build()
-        realm = Realm.open(config)
-    }
+//    private val realm: Realm
+//
+//    init {
+//        val config = RealmConfiguration.Builder(schema = setOf(User::class))
+//            .name("users.realm")
+//            .build()
+//        realm = Realm.open(config)
+//    }
 
     fun onUsernameChange(newUsername: String) {
         username.value = newUsername
@@ -52,17 +52,17 @@ class ForgotPasswordViewModel : ViewModel() {
         val ans2 = answer2.value.trim()
 
         CoroutineScope(Dispatchers.IO).launch {
-            val user = realm.query<User>("username == $0", currentUsername)
-                .first()
-                .find()
-
-            if (user == null) {
-                onError("መለያ አልተገኘም")
-            } else if (user.resetA1 == ans1 && user.resetA2 == ans2) {
-                onSuccess()
-            } else {
-                onError("መልሶች ትክክል አይደሉም")
-            }
+//            val user = realm.query<User>("username == $0", currentUsername)
+//                .first()
+//                .find()
+//
+//            if (user == null) {
+//                onError("መለያ አልተገኘም")
+//            } else if (user.resetA1 == ans1 && user.resetA2 == ans2) {
+//                onSuccess()
+//            } else {
+//                onError("መልሶች ትክክል አይደሉም")
+//            }
         }
     }
 }

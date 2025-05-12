@@ -1,8 +1,10 @@
 plugins {
-    alias(libs.plugins.android.application)
+//    alias(libs.plugins.android.application)
+//    alias(libs.plugins.kotlin.android)
+//    alias(libs.plugins.kotlin.compose)
+    id("com.android.application")
+//    id("io.realm.kotlin") version "1.12.0"
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
-    id("io.realm.kotlin")
 }
 
 android {
@@ -29,16 +31,31 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
+        languageVersion = "1.9"
+        apiVersion = "1.9"
     }
+
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.12" // This must match Kotlin 1.9.23
+    }
+//    kotlinOptions {
+//        jvmTarget = "17"
+//    }
+    //    kotlin {
+//        jvmToolchain(17)
+//    }
 }
+
+
 
 dependencies {
 
@@ -60,9 +77,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.library.base)
+//    implementation(libs.library.base)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.material.icons.extended.v100)
-    implementation (libs.library)
+//    implementation(libs.library.base)
+//    implementation(libs.library.base.v1120)
+//    implementation (libs.library)
 
 }
