@@ -3,13 +3,7 @@ pluginManagement {
         id("io.realm.kotlin") version "1.11.0"
     }
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
+        google ()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -25,6 +19,5 @@ dependencyResolutionManagement {
 rootProject.name = "Haleta Quiz App"
 
 include(":app")
-project(":app").projectDir = file("app")
 
  

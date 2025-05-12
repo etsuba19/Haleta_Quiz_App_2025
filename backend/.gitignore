@@ -1,0 +1,30 @@
+# SQLite database
+data/*.sqlite
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.idea
+.vscode
+
+# OS specific
+.DS_Store 
+
+# Environment variables
+.env
+
+
+# Node modules
+node_modules
+
+# TypeScript build
+dist
+
+# TypeScript compilation
+*.tsbuildinfo   

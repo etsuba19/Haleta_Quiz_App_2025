@@ -32,8 +32,8 @@ fun LoginScreen(
 ) {
     val username = viewModel.username
     val password = viewModel.password
-    val role = viewModel.role
     val errorMessage = viewModel.errorMessage
+    val isLoading = viewModel.isLoading
 
     Column(
         modifier = Modifier
@@ -104,41 +104,24 @@ fun LoginScreen(
             )
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            listOf("student" to "ተማሪ", "admin" to "አስተዳዳሪ").forEach { (value, label) ->
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    RadioButton(
-                        selected = role == value,
-                        onClick = { viewModel.onRoleSelected(value) },
-                        colors = RadioButtonDefaults.colors(
-                            selectedColor = Color(0xFFF0DDE0),
-                            unselectedColor = Color(0xFFF0DDE0),
-                            disabledSelectedColor = Color(0xFFF0DDE0),
-                            disabledUnselectedColor = Color(0xFFF0DDE0)
-                        )
-                    )
-                    Text(label, color = Color(0xFFF0DDE0))
-                }
-                Spacer(modifier = Modifier.width(16.dp))
-            }
-        }
-
         Spacer(modifier = Modifier.height(24.dp))
 
-        CommonButton(
-            text = "ግባ",
-            onClick = {
-                viewModel.validateAndNavigate(
-                    navigateToStudent = { navController.navigate(Screen.Choice.route) },
-                    navigateToAdmin = { navController.navigate(Screen.Landing.route) }
-                )
-            }
-        )
+        if (isLoading) {
+            CircularProgressIndicator(
+                color = Color(0xFFF0DDE0),
+                modifier = Modifier.size(24.dp)
+            )
+        } else {
+            CommonButton(
+                text = "ግባ",
+                onClick = {
+                    viewModel.login(
+                        navigateToStudent = { navController.navigate(Screen.Choice.route) },
+                        navigateToAdmin = { navController.navigate(Screen.AdminDashboard.route) }
+                    )
+                }
+            )
+        }
 
         errorMessage?.let {
             Text(

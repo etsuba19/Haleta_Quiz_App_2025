@@ -1,21 +1,30 @@
 package com.webbed.haletaquizapp.ui.screens.login
 
+import android.app.Application
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
-import com.webbed.haletaquizapp.data.RealmProvider.realm
-import com.webbed.haletaquizapp.models.Admin
-import io.realm.kotlin.ext.query
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import com.webbed.haletaquizapp.api.RetrofitClient
+import com.webbed.haletaquizapp.data.TokenManager
+import com.webbed.haletaquizapp.repository.AuthRepository
+import kotlinx.coroutines.launch
+import java.io.IOException
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val authRepository: AuthRepository,
+    private val tokenManager: TokenManager
+) : AndroidViewModel(Application()) {
+    
     var username by mutableStateOf("")
         private set
 
     var password by mutableStateOf("")
         private set
 
-    var role by mutableStateOf<String?>(null)
+    var isLoading by mutableStateOf(false)
         private set
 
     var errorMessage by mutableStateOf<String?>(null)
@@ -29,32 +38,59 @@ class LoginViewModel : ViewModel() {
         password = newPassword
     }
 
-    fun onRoleSelected(selectedRole: String) {
-        role = selectedRole
-    }
-
-    fun validateAndNavigate(
+    fun login(
         navigateToStudent: () -> Unit,
         navigateToAdmin: () -> Unit
     ) {
-        if (role == null) {
-            errorMessage = "ተማሪ / አስተዳዳሪ ሚለውን አልመረጡም"
+        if (username.isBlank() || password.isBlank()) {
+            errorMessage = "የተጠቃሚ ስም እና የይለፍ ቃል ያስፈልጋል"
             return
         }
 
-        if (role == "student") {
-            errorMessage = null
-            navigateToStudent()
-        } else if (role == "admin") {
-            val admin = realm.query<Admin>("username == $0", username).first().find()
-            if (admin != null && admin.password == password) {
-                val canManageUsers = admin.canManageUsers
-                val canManageQuizzes = admin.canManageQuizzes
-                val canManageResources = admin.canManageResources
-                navigateToAdmin()
-            } else {
-                errorMessage = "መለያ ወይም የይለፍ ቃል ተሳስቷል"
+        viewModelScope.launch {
+            try {
+                isLoading = true
+                errorMessage = null
+                
+                val response = authRepository.login(username, password)
+                
+                if (response.isSuccessful) {
+                    response.body()?.let { loginResponse ->
+                        // Save auth token
+                        tokenManager.saveToken(loginResponse.access_token)
+                        
+                        // Save user role information
+                        val isAdmin = loginResponse.user.isAdmin
+                        
+                        if (isAdmin) {
+                            loginResponse.user.permissions?.let { permissions ->
+                                tokenManager.saveUserRole(
+                                    isAdmin = true,
+                                    canManageUsers = permissions.canManageUsers,
+                                    canManageQuizzes = permissions.canManageQuizzes,
+                                    canManageResources = permissions.canManageResources
+                                )
+                            }
+                            navigateToAdmin()
+                        } else {
+                            tokenManager.saveUserRole(isAdmin = false)
+                            navigateToStudent()
+                        }
+                    }
+                } else {
+                    errorMessage = "መለያ ወይም የይለፍ ቃል ተሳስቷል"
+                }
+            } catch (e: IOException) {
+                errorMessage = "ከአገልጋይ ጋር መገናኘት አልተቻለም"
+            } catch (e: Exception) {
+                errorMessage = "ያልታወቀ ስህተት: ${e.message}"
+            } finally {
+                isLoading = false
             }
         }
+    }
+
+    fun logout() {
+        tokenManager.deleteToken()
     }
 }
